@@ -849,6 +849,13 @@
   margin: var(--oe-space-xxs) 0 0; color: var(--oe-fg); max-width: none;
 }
 
+/* Regola fissa: il testo sotto un grafico non va MAI su due colonne. Il commento a un
+   grafico si legge di seguito, a fascia piena; .oe-text-2col è solo per il testo lungo
+   che non segue un grafico. Rete di sicurezza: se compare dopo una figura nella stessa
+   fascia, torna a una colonna da solo. */
+.oe-fig ~ .oe-text-2col, .fig ~ .oe-text-2col, .oe-fig ~ .text-2col, .fig ~ .text-2col,
+.oe-fig ~ * .oe-text-2col, .fig ~ * .oe-text-2col { columns: 1; }
+
 /* controllo segmentato che cambia vista */
 .oe-fig__ctrl {
   display: flex; align-items: center; gap: var(--oe-space-s); flex-wrap: wrap;
