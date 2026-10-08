@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gli investimenti di RFI nel 2025 | OpenEconomics</title>
+<meta name="description" content="Analisi d'impatto socioeconomico degli investimenti 2025 di RFI sulla rete ferroviaria nazionale. OpenEconomics, modello SAM Italia provinciale e multisettoriale.">
+<link rel="stylesheet" href="ds-kit/colors_and_type.css?v=202610081554">
+<link rel="stylesheet" href="ds-kit/components.css?v=202610081554">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden;background:var(--oe-bg);color:var(--oe-fg);
+  font-family:var(--oe-font-sans);font-weight:300;font-size:18px;line-height:1.5}
+img,svg{max-width:100%}
+.oe-container{} /* dal design system: 1440 + 32 */
+
+/* ---- header ---- */
+.site{background:var(--oe-bg);border-bottom:1px solid var(--oe-gray-200)}
+.site__inner{display:flex;align-items:center;padding-block:var(--oe-space-s);min-height:64px}
+.site__logo{height:20px;width:auto;color:var(--oe-black);display:block}
+
+/* ---- fasce ----
+   .oe-band / --tight / --elev / --nota / --dark arrivano dal DS v0.5.0.
+   Qui solo il riquadro dei grafici, che prende il colore opposto a quello della fascia. */
+.oe-band--nota .fig{background:var(--oe-white)}
+.oe-band--nota .oe-note--grey{background:var(--oe-white)}
+.oe-band + .oe-band--elev{border-top:1px solid var(--oe-gray-200)}
+
+/* ---- type ---- */
+h2{font-family:var(--oe-font-serif);font-weight:400;font-size:clamp(28px,3.2vw,44px);
+  line-height:1.12;margin:0 0 var(--oe-space-m);max-width:none;text-wrap:balance}
+h3{font-family:var(--oe-font-sans);font-weight:600;font-size:20px;line-height:1.3;
+  margin:var(--oe-space-xl) 0 var(--oe-space-xs)}
+.fig + h3{margin-top:var(--oe-space-l)}
+h4{font-family:var(--oe-font-sans);font-weight:600;font-size:16px;margin:0 0 var(--oe-space-xxs)}
+/* il testo corrente occupa tutta la fascia: la misura di lettura si governa
+   con .oe-text-2col dove il paragrafo è lungo, non con un cap sulla riga */
+p{margin:0 0 var(--oe-space-s);color:var(--oe-fg-soft);max-width:none;text-wrap:pretty}
+.lead{font-size:21px;color:var(--oe-fg-soft);max-width:none}
+.body{font-size:17px}
+.note{font-size:14px;color:var(--oe-fg-muted);max-width:none}
+.foot-note{font-size:13px;color:var(--oe-fg-muted);max-width:none;margin-top:var(--oe-space-s)}
+strong{font-weight:600;color:var(--oe-fg)}
+.oe-band .oe-tag-chip--lime{margin-bottom:var(--oe-space-s)}
+ul.plain{list-style:none;margin:0 0 var(--oe-space-s);padding:0;display:grid;gap:var(--oe-space-s)}
+ul.plain li{position:relative;padding-left:26px;color:var(--oe-fg-soft);font-size:22px;line-height:1.3;letter-spacing:.01em;max-width:none}
+ul.plain li::before{content:"";position:absolute;left:0;top:.5em;width:12px;height:12px;background:var(--oe-accent)}
+ol.steps{margin:0 0 var(--oe-space-s);padding-left:22px;display:grid;gap:var(--oe-space-s)}
+ol.steps li{color:var(--oe-fg-soft);font-size:22px;line-height:1.3;letter-spacing:.01em;max-width:none}
+/* elenchi e paragrafi hanno lo stesso corpo del testo del DS (22px) */
+.oe-text-2col + p,.oe-text-2col + ol,.oe-text-2col + ul{margin-top:var(--oe-space-s)}
+a{color:var(--oe-link)}
+
+/* ---- executive summary ----
+   Quattro colonne come l'infografica di RFI: in alto diretto e indiretto, sotto l'indotto
+   aggiuntivo; la prima colonna chiude con la composizione della spesa. */
+.oe-kpis--4{grid-template-columns:repeat(4,1fr)}
+.es-row{font-family:var(--oe-font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--oe-fg-muted);margin:var(--oe-space-l) 0 var(--oe-space-xs)}
+.oe-kpi .oe-kpi__note{margin-top:var(--oe-space-xs)}
+.mix{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.mix li{display:flex;justify-content:space-between;gap:var(--oe-space-s);font-size:16px;
+  color:var(--oe-fg-soft);border-bottom:1px solid var(--oe-gray-200);padding-bottom:6px}
+.mix li:last-child{border-bottom:0;padding-bottom:0}
+.mix b{font-weight:600;color:var(--oe-fg);font-variant-numeric:tabular-nums}
+.oe-kpi:hover .mix li,.oe-kpi:focus-visible .mix li{color:rgba(255,255,255,.82);border-color:rgba(255,255,255,.18)}
+.oe-kpi:hover .mix b,.oe-kpi:focus-visible .mix b{color:var(--oe-white)}
+@media (max-width:1199.98px){ .oe-kpis--4{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:480px){ .oe-kpis--4{grid-template-columns:1fr} }
+
+/* ---- due colonne testo/elenco ---- */
+.cols{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--oe-space-2xl);align-items:start}
+.cols--even{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:899.98px){ .cols,.cols--even{grid-template-columns:1fr;gap:var(--oe-space-l)} }
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--oe-space-s);
+  margin-top:var(--oe-space-xl)}
+.oe-card p{margin:0;font-size:16px}
+
+/* ---- figure: riquadro del grafico, colore opposto alla sezione ---- */
+.fig{margin:var(--oe-space-l) 0 var(--oe-space-xl);border:1px solid var(--oe-gray-200);
+  padding:var(--oe-space-m);background:var(--oe-bg-elev)}
+.oe-band--elev .fig{background:var(--oe-white)}
+.fig__head{margin-bottom:var(--oe-space-s)}
+.fig__title{font-family:var(--oe-font-sans);font-weight:600;font-size:17px;margin:4px 0 0;color:var(--oe-fg);max-width:none}
+.fig__embed iframe{display:block;width:100%;height:var(--h,600px);border:0}
+.fig__src{font-family:var(--oe-font-mono);font-size:11px;letter-spacing:.04em;
+  color:var(--oe-fg-muted);margin:var(--oe-space-s) 0 0;max-width:none}
+
+/* ---- scopri di più ---- */
+.oe-more{margin-top:var(--oe-space-m);border-top:1px solid var(--oe-gray-200);padding-top:var(--oe-space-s)}
+.oe-more summary{font-family:var(--oe-font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;
+  color:var(--oe-accent);cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:8px}
+.oe-more summary::-webkit-details-marker{display:none}
+.oe-more summary::after{content:"";width:9px;height:9px;border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .14s}
+.oe-more[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+.oe-more__body{margin-top:var(--oe-space-m)}
+
+/* ---- flow (teoria del cambiamento) ---- */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--oe-space-s);margin-top:var(--oe-space-m)}
+@media (max-width:767.98px){ .flow{grid-template-columns:1fr} }
+.flow div{border:1px solid var(--oe-gray-200);padding:var(--oe-space-m);background:var(--oe-white)}
+.oe-band--elev .flow div{background:var(--oe-bg-elev)}
+.flow span{font-family:var(--oe-font-mono);font-size:12px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--oe-accent);display:block;margin-bottom:6px}
+.flow p{margin:0;font-size:16px}
+.flow p + p{margin-top:var(--oe-space-xs);color:var(--oe-fg);font-weight:600}
+
+/* ---- note ---- */
+.oe-note{margin-top:var(--oe-space-l)}
+
+
+/* ---- numeri ----
+   Hedvig solo sui numeri in evidenza (stat, podio, cifre grandi dei grafici).
+   Etichette delle barre, classifica della mappa e tabelle restano in Atkinson tabulare. */
+.oe-chart .oe-val{font-family:var(--oe-font-sans);font-weight:500;font-variant-numeric:tabular-nums}
+.oe-chart .oe-val--display{font-family:var(--oe-font-serif);font-weight:400;letter-spacing:-.01em}
+.stat-inline b{font-family:var(--oe-font-serif);font-weight:400;letter-spacing:-.01em}
+.oe-rank b{font-family:var(--oe-font-sans);font-weight:500;font-size:13px}
+
+/* ---- controlli dei grafici ---- */
+.fig__ctrl{display:flex;align-items:center;gap:var(--oe-space-s);flex-wrap:wrap;
+  margin:0 0 var(--oe-space-s)}
+.fig__ctrl-label{font-family:var(--oe-font-mono);font-size:11px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--oe-fg-muted)}
+.oe-segment__btn:focus-visible{outline:2px solid var(--oe-accent);outline-offset:2px}
+
+/* ---- grafici: stati interattivi ---- */
+.oe-chart{display:block;width:100%;overflow:hidden}
+.oe-chart .oe-bar{transition:width .38s cubic-bezier(.2,.7,.2,1),opacity .14s linear}
+.oe-chart .oe-row,.oe-chart .oe-region{cursor:default;outline:none}
+.oe-chart .oe-row:hover .oe-bar,.oe-chart .oe-row:focus-visible .oe-bar{opacity:.86}
+.oe-chart .oe-row:focus-visible .oe-lab,.oe-chart .oe-row:focus-visible .oe-val{font-weight:600}
+.oe-chart .oe-lg{cursor:pointer}
+.oe-chart[data-focus] .oe-bar{opacity:.22}
+.oe-chart[data-focus="0"] .oe-bar[data-series="0"],
+.oe-chart[data-focus="1"] .oe-bar[data-series="1"],
+.oe-chart[data-focus="2"] .oe-bar[data-series="2"]{opacity:1}
+.oe-chart .oe-src{font-family:var(--oe-font-mono);letter-spacing:.04em}
+[data-oe-chart].is-in{animation:figIn .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes figIn{from{opacity:0}to{opacity:1}}
+
+/* ---- mappa + classifica ---- */
+.oe-map{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:var(--oe-space-l);align-items:start}
+@media (max-width:767.98px){ .oe-map{grid-template-columns:1fr} }
+.oe-map__svg{max-height:520px}
+.oe-region{transition:fill .32s cubic-bezier(.2,.7,.2,1)}
+.oe-region.is-on{stroke:var(--oe-accent);stroke-width:1.6}
+.oe-rank{list-style:none;margin:0;padding:0;columns:2;column-gap:var(--oe-space-l);font-size:13px}
+@media (max-width:560px){ .oe-rank{columns:1} }
+.oe-rank__i{display:flex;align-items:center;gap:8px;padding:3px 4px;break-inside:avoid;cursor:default}
+.oe-rank__i i{width:10px;height:10px;flex:0 0 auto}
+.oe-rank__i span{flex:1 1 auto;color:var(--oe-fg-soft)}
+.oe-rank__i b{font-variant-numeric:tabular-nums}
+.oe-rank__i.is-on{background:var(--oe-accent-soft)}
+.oe-chart__foot{display:flex;flex-wrap:wrap;gap:var(--oe-space-s);justify-content:space-between;
+  margin:var(--oe-space-s) 0 0;font-size:11.5px;color:var(--oe-fg-muted)}
+.oe-chart__foot .oe-src{font-family:var(--oe-font-mono);letter-spacing:.04em}
+
+/* ---- tooltip ---- */
+.oe-tip{position:fixed;top:0;left:0;z-index:60;pointer-events:none;opacity:0;
+  transition:opacity .12s linear;background:var(--oe-bg-dark);color:#fff;padding:10px 12px;
+  min-width:180px;max-width:280px;box-shadow:0 4px 12px rgba(39,0,101,.18)}
+.oe-tip.is-on{opacity:1}
+.oe-tip__t{font-family:var(--oe-font-sans);font-weight:600;font-size:13px;margin-bottom:2px}
+.oe-tip__s{font-family:var(--oe-font-mono);font-size:10.5px;text-transform:uppercase;
+  letter-spacing:.04em;color:var(--oe-on-dark-accent);margin-bottom:6px}
+.oe-tip__r{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;line-height:1.5;
+  color:rgba(255,255,255,.82)}
+.oe-tip__r b{font-family:var(--oe-font-sans);font-weight:600;font-size:12.5px;color:#fff;
+  font-variant-numeric:tabular-nums}
+.oe-tip__k{display:flex;align-items:center;gap:6px}
+.oe-tip__k i{width:9px;height:9px;display:inline-block;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)}
+
+@media (prefers-reduced-motion: reduce){
+  .oe-chart .oe-bar,.oe-region{transition:none}
+  [data-oe-chart].is-in{animation:none}
+}
+
+
+
+@media print{ .site,.oe-cta,.fig__ctrl,.oe-hero-analisi__cue{display:none} }
+
+@media (max-width:767.98px){
+  .site__inner{flex-wrap:wrap;row-gap:var(--oe-space-xs)}
+  .cards{grid-template-columns:1fr}
+  .fig{padding:var(--oe-space-s);margin:var(--oe-space-m) 0 var(--oe-space-l)}
+  /* i grafici non si rimpiccioliscono fino a diventare illeggibili:
+     tengono una larghezza minima e la fascia scorre in orizzontale */
+  [data-oe-chart]{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .oe-chart:not(.oe-map__svg){min-width:620px}
+  .oe-map{gap:var(--oe-space-m)}
+  .oe-map__svg{min-width:0;max-height:380px;margin-inline:auto}
+  .fig__ctrl{gap:var(--oe-space-xs)}
+  .oe-segment{flex-wrap:wrap}
+}
+
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="oe-container site__inner">
+    <svg class="site__logo" viewBox="0 0 1789 226" fill="currentColor" role="img" aria-label="OpenEconomics" xmlns="http://www.w3.org/2000/svg"     > <path d="M90.6,9.5c-49,0-88.7,39.8-88.7,89c0,49.1,39.7,89,88.7,89s88.7-39.8,88.7-89C179.3,49.3,139.6,9.5,90.6,9.5z M38.2,151V46h104.6v105H38.2z" /> <path d="M199.5,226V57H221l5.6,19.3c2.6-4.6,5.9-8.6,10-11.8c4.1-3.3,8.7-5.7,13.8-7.4s10.7-2.6,16.6-2.6c10.1,0,19.3,2.7,27.6,8c8.4,5.3,15,12.9,20,22.9c4.9,9.9,7.4,21.8,7.4,35.7s-2.5,25.9-7.4,36c-4.9,9.9-11.6,17.6-20,22.9c-8.4,5.1-17.6,7.7-27.6,7.7c-6,0-11.5-0.9-16.6-2.6c-5.1-1.7-9.7-4.2-13.8-7.4c-4.1-3.4-7.4-7.4-10-12.1V226H199.5z M259.1,165.1c9.9,0,17.9-3.9,24-11.6c6.3-7.7,9.5-18.6,9.5-32.6s-3.2-24.9-9.5-32.6c-6.1-7.7-14.2-11.6-24-11.6c-9.9,0-18,3.7-24.3,11c-6.1,7.4-9.2,18.3-9.2,32.9c0,14.4,3.1,25.4,9.2,33.1C241.1,161.4,249.2,165.1,259.1,165.1z" /> <path d="M399.1,187.5c-13.5,0-25.1-2.8-34.8-8.5c-9.6-5.8-17-13.7-22.3-23.6c-5.1-10.1-7.7-21.7-7.7-34.7c0-13.5,2.8-25.3,8.4-35.2c5.8-9.9,13.5-17.6,23-22.9c9.7-5.5,20.6-8.2,32.5-8.2c10.1,0,19,2,26.9,5.9c8,3.9,14.7,9.3,20,16.2c5.3,6.8,9.1,14.7,11.5,23.6c2.4,8.7,3.2,18.1,2.6,28H362c0.9,7,2.6,12.9,5.1,17.7c2.6,4.8,5.5,8.6,9,11.3c3.6,2.7,7.3,4.7,11.3,5.9c4.1,1.2,7.9,1.8,11.5,1.8c6.7,0,12.3-1,16.9-3.1c4.8-2.2,8.5-5.1,11.3-8.5l24,7.7c-5.1,8.2-12.2,14.7-21.2,19.5C420.8,185.2,410.5,187.5,399.1,187.5z M362.3,108.6h69.8c-0.2-5.8-1.7-11.1-4.6-15.9c-2.7-5-6.6-8.9-11.5-11.8c-4.9-3.1-10.7-4.6-17.4-4.6c-5.3,0-10.6,1-15.9,3.1c-5.1,2.1-9.6,5.5-13.3,10.3C365.8,94.2,363.5,100.6,362.3,108.6z" /> <path d="M477.9,184.4V57h21.7l5.4,18.5c2.2-3.8,5.1-7.2,8.7-10.3c3.8-3.3,8.2-5.8,13.3-7.7c5.3-2.1,11.4-3.1,18.4-3.1c10.4,0,18.7,2.1,24.8,6.2s10.6,9.9,13.3,17.5c2.7,7.5,4.1,16.4,4.1,26.7v79.6h-27.4v-72.2c0-6.3-0.5-12.2-1.5-17.5c-1-5.5-3.3-9.8-6.9-13.1c-3.4-3.3-9-4.9-16.6-4.9c-9.6,0-17,3.4-22.3,10.3c-5.3,6.7-7.9,16.5-7.9,29.5v67.8L477.9,184.4L477.9,184.4z" /> <path d="M645.3,158.7V112h-25.9v72.5H737v-25.7h-91.7V158.7z M736.1,38.3V12.6H619.4v71.9h25.9V38.3H736.1z M714.6,84.5h-69.3V112h69.3V84.5z" /> <path d="M808.6,187.5c-12.8,0-23.8-2.8-33-8.5c-9-5.8-16-13.7-21-23.6c-4.8-10.1-7.2-21.7-7.2-34.7c0-12.8,2.6-24.2,7.7-34.2c5.3-10.1,12.6-18,22-23.6c9.4-5.7,20.4-8.5,33-8.5c7.5,0,14.5,1.3,21,3.9c6.7,2.4,12.5,5.8,17.7,10.3c5.1,4.5,9.2,9.8,12.3,16.2l-23.8,8.7c-2.6-5.3-6.3-9.3-11.3-12.1c-4.8-2.9-10.1-4.4-16.1-4.4c-5.8,0-11.3,1.5-16.6,4.6c-5.1,3.1-9.3,7.8-12.5,14.1c-3.1,6.3-4.6,14.6-4.6,24.9c0,10.1,1.6,18.5,4.9,25.2c3.2,6.5,7.4,11.3,12.5,14.4c5.1,3.1,10.6,4.6,16.4,4.6c6.5,0,12-1.4,16.6-4.1c4.8-2.9,8.4-6.7,11-11.3l23.8,8.7c-3.6,6.2-8.1,11.5-13.6,15.9c-5.5,4.3-11.5,7.6-18.2,10C823,186.4,816,187.5,808.6,187.5z" /> <path d="M929.2,187.5c-7.8,0-15.5-1.3-23-3.9c-7.5-2.6-14.2-6.6-20.2-12.1s-10.8-12.4-14.6-20.8c-3.6-8.4-5.4-18.3-5.4-29.8s1.8-21.4,5.4-29.8c3.8-8.4,8.6-15.3,14.6-20.8s12.7-9.5,20.2-12.1s15.2-3.9,23-3.9s15.4,1.3,22.8,3.9c7.5,2.6,14.2,6.6,20.2,12.1s10.7,12.4,14.3,20.8c3.8,8.4,5.6,18.3,5.6,29.8s-1.9,21.4-5.6,29.8c-3.6,8.4-8.4,15.3-14.3,20.8c-6,5.5-12.7,9.5-20.2,12.1C944.7,186.2,937.1,187.5,929.2,187.5z M929.2,164.9c6,0,11.5-1.5,16.6-4.4c5.3-3.1,9.6-7.9,12.8-14.4s4.9-14.9,4.9-25.2s-1.6-18.6-4.9-24.9c-3.2-6.5-7.5-11.3-12.8-14.4c-5.1-3.1-10.7-4.6-16.6-4.6c-6,0-11.6,1.5-16.9,4.6c-5.3,3.1-9.6,7.9-12.8,14.4c-3.2,6.3-4.9,14.6-4.9,24.9s1.6,18.7,4.9,25.2c3.2,6.5,7.5,11.3,12.8,14.4C917.6,163.4,923.3,164.9,929.2,164.9z" /> <path d="M1012.3,184.4V57h21.8l5.4,18.5c2.2-3.8,5.1-7.2,8.7-10.3c3.8-3.3,8.2-5.8,13.3-7.7c5.3-2.1,11.4-3.1,18.4-3.1c10.4,0,18.7,2.1,24.8,6.2c6.1,4.1,10.6,9.9,13.3,17.5c2.7,7.5,4.1,16.4,4.1,26.7v79.6h-27.4v-72.2c0-6.3-0.5-12.2-1.5-17.5c-1-5.5-3.3-9.8-6.9-13.1c-3.4-3.3-8.9-4.9-16.6-4.9c-9.6,0-17,3.4-22.2,10.3c-5.3,6.7-7.9,16.5-7.9,29.5v67.8L1012.3,184.4L1012.3,184.4z" /> <path d="M1204.8,187.5c-7.8,0-15.5-1.3-23-3.9c-7.5-2.6-14.2-6.6-20.2-12.1s-10.8-12.4-14.6-20.8c-3.6-8.4-5.4-18.3-5.4-29.8s1.8-21.4,5.4-29.8c3.8-8.4,8.6-15.3,14.6-20.8s12.7-9.5,20.2-12.1s15.2-3.9,23-3.9s15.4,1.3,22.8,3.9c7.5,2.6,14.2,6.6,20.2,12.1s10.8,12.4,14.3,20.8c3.8,8.4,5.6,18.3,5.6,29.8s-1.9,21.4-5.6,29.8c-3.6,8.4-8.4,15.3-14.3,20.8c-6,5.5-12.7,9.5-20.2,12.1C1220.2,186.2,1212.6,187.5,1204.8,187.5z M1204.8,164.9c6,0,11.5-1.5,16.6-4.4c5.3-3.1,9.5-7.9,12.8-14.4c3.2-6.5,4.9-14.9,4.9-25.2s-1.6-18.6-4.9-24.9c-3.2-6.5-7.5-11.3-12.8-14.4c-5.1-3.1-10.7-4.6-16.6-4.6c-6,0-11.6,1.5-16.9,4.6s-9.6,7.9-12.8,14.4c-3.2,6.3-4.9,14.6-4.9,24.9s1.6,18.7,4.9,25.2c3.2,6.5,7.5,11.3,12.8,14.4C1193.2,163.4,1198.8,164.9,1204.8,164.9z" /> <path d="M1287.8,184.4V57h21.8l5.4,18.5c2.2-3.8,5-7.2,8.4-10.3c3.6-3.3,7.8-5.8,12.8-7.7c4.9-2.1,10.6-3.1,16.9-3.1c9.9,0,17.8,2,23.8,5.9c6,3.8,10.4,9.2,13.3,16.2c4.9-7.7,11.1-13.3,18.4-16.7c7.5-3.6,15.7-5.4,24.6-5.4c10.2,0,18.3,2.1,24.3,6.2s10.3,9.9,13,17.5s4.1,16.4,4.1,26.7v79.6h-27.1v-72.2c0-6.3-0.6-12.2-1.8-17.5c-1-5.5-3.3-9.8-6.9-13.1c-3.4-3.3-8.8-4.9-16.1-4.9c-8.7,0-15.5,3.3-20.5,10c-4.9,6.5-7.4,16.2-7.4,29v68.6h-27.1v-72.2c0-6.3-0.6-12.2-1.8-17.5c-1-5.5-3.2-9.8-6.7-13.1c-3.4-3.3-8.8-4.9-16.1-4.9c-5.8,0-10.8,1.5-15.1,4.6c-4.3,2.9-7.5,7.4-9.7,13.4c-2.2,5.8-3.3,12.9-3.3,21.3v68.3h-27.2V184.4z" /> <path d="M1510,184.4V78.3h-18.9V57h46.3v127.4H1510z" /> <path d="M1505.9,1h31.7v31.8h-31.7V1z" /> <path d="M1619.1,187.5c-12.8,0-23.8-2.8-33-8.5c-9-5.8-16-13.7-21-23.6c-4.8-10.1-7.2-21.7-7.2-34.7c0-12.8,2.6-24.2,7.7-34.2c5.3-10.1,12.6-18,22-23.6c9.4-5.7,20.4-8.5,33-8.5c7.5,0,14.5,1.3,21,3.9c6.7,2.4,12.5,5.8,17.7,10.3c5.1,4.5,9.2,9.8,12.3,16.2l-23.8,8.7c-2.6-5.3-6.3-9.3-11.3-12.1c-4.8-2.9-10.2-4.4-16.1-4.4c-5.8,0-11.3,1.5-16.6,4.6c-5.1,3.1-9.3,7.8-12.5,14.1c-3.1,6.3-4.6,14.6-4.6,24.9c0,10.1,1.6,18.5,4.9,25.2c3.2,6.5,7.4,11.3,12.5,14.4s10.6,4.6,16.4,4.6c6.5,0,12-1.4,16.6-4.1c4.8-2.9,8.4-6.7,11-11.3l23.8,8.7c-3.6,6.2-8.1,11.5-13.6,15.9c-5.4,4.3-11.5,7.6-18.2,10C1633.4,186.4,1626.4,187.5,1619.1,187.5z" /> <path d="M1734.2,187.5c-8.2,0-16.1-1.2-23.8-3.6c-7.5-2.4-14.1-5.9-19.9-10.5c-5.6-4.8-9.9-10.8-12.8-18l24.8-9c1.7,6.3,5.7,11.2,12,14.6c6.3,3.4,13,5.1,19.9,5.1c7.7,0,14.2-1.5,19.7-4.6c5.5-3.3,8.2-7.5,8.2-12.8c0-4.6-2-8.2-5.9-10.8s-10.2-4.7-18.9-6.4l-17.1-3.6c-7.5-1.5-14.2-3.8-20.2-6.7c-5.8-2.9-10.4-6.8-13.8-11.6c-3.2-4.8-4.9-10.8-4.9-18c0-7.9,2.4-14.6,7.2-20.3c4.8-5.7,11.1-9.9,18.9-12.8c8-2.9,16.6-4.4,25.8-4.4c11.1,0,21.4,2.2,30.9,6.7c9.6,4.3,16.5,11.2,20.7,20.8l-24.3,9c-2.2-5-6-8.7-11.3-11.3c-5.1-2.6-10.9-3.9-17.4-3.9c-7.2,0-13,1.4-17.4,4.1s-6.7,6.4-6.7,11c0,4.1,1.5,7.3,4.6,9.5c3.2,2.1,8.3,3.9,15.1,5.4l17.4,3.6c9.2,1.9,17.1,4.3,23.5,7.2c6.6,2.9,11.7,6.8,15.1,11.8c3.4,4.8,5.1,11.1,5.1,19c0,8.4-2.5,15.7-7.4,21.8c-4.9,6-11.5,10.6-19.7,13.9C1753.7,185.9,1744.5,187.5,1734.2,187.5z" />    </svg>
+  </div>
+</header>
+
+<!-- ============================================================ HERO · UI Block .oe-hero-analisi -->
+<section class="oe-hero-analisi">
+  <div class="oe-hero-analisi__media"><img src="assets/hero-tiburtina.jpg" alt="" aria-hidden="true" decoding="async"></div>
+  <div class="oe-container">
+    <div class="oe-hero-analisi__top">
+      <span class="oe-tag-chip oe-tag-chip--lime">Caso studio</span>
+      <img class="oe-hero-analisi__client" src="assets/logo-rfi-white.svg" alt="RFI — Rete Ferroviaria Italiana, Gruppo Ferrovie dello Stato Italiane">
+    </div>
+    <h1 class="oe-hero-analisi__title">Gli investimenti di RFI nel 2025</h1>
+    <p class="oe-hero-analisi__sub">Principali impatti sull’economia nazionale</p>
+    <dl class="oe-hero-analisi__meta">
+      <div><dt>Tipo di analisi</dt><dd>Analisi d'impatto socioeconomico</dd></div>
+      <div><dt>Modello / metodologia</dt><dd>SAM Italia — provinciale, multisettoriale</dd></div>
+      <div><dt>Fonti</dt><dd>ISTAT 2022 e RFI</dd></div>
+      <div><dt>Anno di riferimento</dt><dd>2025</dd></div>
+      <div><dt>Ultimo aggiornamento</dt><dd>Maggio 2025</dd></div>
+    </dl>
+  </div>
+  <p class="oe-hero-analisi__cue" aria-hidden="true">Scorri<span></span></p>
+</section>
+
+<!-- ============================================================ EXECUTIVE SUMMARY · bianco
+     Stessa impaginazione dell'infografica RFI: quattro colonne, in alto l'effetto diretto e
+     indiretto, sotto l'indotto aggiuntivo. -->
+<section class="oe-band oe-band--tight">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">Executive Summary</span>
+    <p class="es-row">Diretto e indiretto</p>
+    <div class="oe-kpis oe-kpis--4">
+      <div class="oe-kpi oe-kpi--titled oe-kpi--flip" tabindex="0">
+        <div class="oe-kpi__label">Shock di domanda domestica</div>
+        <div class="oe-kpi__value oe-num">10,4</div>
+        <div class="oe-kpi__unit">Mld € · investimento</div>
+        <p class="oe-kpi__tip">La spesa effettuata agisce come momentaneo aumento della domanda di beni e servizi.</p>
+      </div>
+      <div class="oe-kpi oe-kpi--titled oe-kpi--flip" tabindex="0">
+        <div class="oe-kpi__label">Impatto sul valore della produzione</div>
+        <div class="oe-kpi__value oe-num">20,5</div>
+        <div class="oe-kpi__unit">Mld €</div>
+        <p class="oe-kpi__tip">L’incremento di domanda stimola il fatturato delle imprese nazionali lungo le catene del valore.</p>
+      </div>
+      <div class="oe-kpi oe-kpi--titled oe-kpi--flip" tabindex="0">
+        <div class="oe-kpi__label">Impatto sul PIL</div>
+        <div class="oe-kpi__value oe-num">8,6</div>
+        <div class="oe-kpi__unit">Mld €</div>
+        <p class="oe-kpi__note">PIL / spesa = 0,8</p>
+        <p class="oe-kpi__tip">Nettando gli scambi intermedi si stima l’impatto sul valore aggiunto nazionale.</p>
+      </div>
+      <div class="oe-kpi oe-kpi--titled oe-kpi--flip" tabindex="0">
+        <div class="oe-kpi__label">Impatto sull’occupazione</div>
+        <div class="oe-kpi__value oe-num">112</div>
+        <div class="oe-kpi__unit">Migliaia di occupati (ETP)</div>
+        <p class="oe-kpi__tip">Per soddisfare l’incremento di produzione si impegnano specifiche unità lavorative.</p>
+      </div>
+    </div>
+
+    <p class="es-row">Aggiuntivo indotto</p>
+    <div class="oe-kpis oe-kpis--4">
+      <div class="oe-kpi oe-kpi--titled" tabindex="0">
+        <div class="oe-kpi__label">Composizione della spesa</div>
+        <ul class="mix">
+          <li>Costruzioni <b>50%</b></li>
+          <li>Informatica <b>11%</b></li>
+          <li>Consulenze <b>11%</b></li>
+          <li>Metallurgia <b>6%</b></li>
+          <li>App. elettriche <b>4%</b></li>
+          <li>Altro <b>18%</b></li>
+        </ul>
+      </div>
+      <div class="oe-kpi oe-kpi--titled oe-kpi--flip" tabindex="0">
+        <div class="oe-kpi__label">Valore della produzione</div>
+        <div class="oe-kpi__value oe-num">+11,7</div>
+        <div class="oe-kpi__unit">Mld €</div>
+        <p class="oe-kpi__tip">I guadagni di famiglie, governo e imprese tornano nell’economia come ulteriore spesa e alimentano altro fatturato.</p>
+      </div>
+      <div class="oe-kpi oe-kpi--titled oe-kpi--flip" tabindex="0">
+        <div class="oe-kpi__label">PIL</div>
+        <div class="oe-kpi__value oe-num">+6,2</div>
+        <div class="oe-kpi__unit">Mld €</div>
+        <p class="oe-kpi__note">PIL / spesa = 0,6</p>
+        <p class="oe-kpi__tip">Il contributo aggiuntivo al PIL generato dalla reimmissione dei redditi nell’economia.</p>
+      </div>
+      <div class="oe-kpi oe-kpi--titled oe-kpi--flip" tabindex="0">
+        <div class="oe-kpi__label">Occupazione</div>
+        <div class="oe-kpi__value oe-num">+68</div>
+        <div class="oe-kpi__unit">Migliaia di occupati (ETP)</div>
+        <p class="oe-kpi__tip">I posti di lavoro a tempo pieno attivati dalla domanda aggiuntiva che i nuovi redditi mettono in circolo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ LO STUDIO · grigio -->
+<section class="oe-band oe-band--elev">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">Lo studio</span>
+    <h2>L’impatto degli investimenti sulla rete ferroviaria nazionale</h2>
+    <div>
+      <p>RFI ha promosso un’analisi sugli impatti socio-economici in Italia degli investimenti effettuati sulla rete ferroviaria nazionale nel 2025.</p>
+      <p>La valutazione è stata realizzata utilizzando un modello macroeconomico dettagliato a livello provinciale e multisettoriale di tipo Social Accounting Matrix (SAM) su dati ISTAT 2022, che si colloca tra gli strumenti di elezione nelle best practices internazionali per questa tipologia di analisi.</p>
+    </div>
+    <details class="oe-more">
+      <summary>Scopri di più: lo scenario e i limiti della stima</summary>
+      <div class="oe-more__body oe-text-2col">
+        <p>Lo scenario di analisi è stato costruito utilizzando la spesa per investimenti (nettata delle importazioni dall’estero) per la progettazione e la realizzazione di nuove infrastrutture ferroviarie e l’ammodernamento delle preesistenti come shock di domanda nazionale di beni e servizi (distribuita nel periodo di riferimento) alla quale il modello economico ha “reagito”, restituendo una stima del contributo di tale spesa alla formazione dei principali indicatori economici della nostra economia.</p>
+        <p>Tale contributo rappresenta una stima parziale in quanto contabilizza unicamente gli effetti della fase di cosiddetto “cantiere”, ovvero quella in cui si dispiegano gli effetti della spesa attraverso l’incremento della domanda e non considera invece gli effetti di “regime” nell’arco della vita utile dell’infrastruttura determinati dal successivo stimolo di “offerta” di servizi di trasporto nuovi e/o migliori. Inoltre, gli effetti catturati dal modello sono da leggersi al lordo di un eventuale investimento controfattuale. Pertanto, per ottenere un effetto differenziale della spesa, confrontabile con altre tipologie di modelli, il moltiplicatore ottenuto andrebbe nettato di una crescita tendenziale o dell’effetto di investimenti alternativi.</p>
+        <p>Allo stesso tempo va però specificato che, per sue caratteristiche, il modello utilizzato considera la propagazione degli effetti nell’economia contabilizzando gli effetti diretti della spesa, quelli indiretti derivanti dalla propagazione della spesa lungo le catene del valore nazionali attivate e anche quelli indotti, ovvero determinati dalle reimmissione nell’economia dei guadagni di famiglie, governo e imprese sotto forma di ulteriore spesa, che risultano più rilevanti ma associabili in maniera meno netta alla spesa (vedi la spiegazione di dettaglio inclusa nel <a href="https://qcfdxmax.elementor.cloud/wp-content/uploads/2025/05/OE_RFI_Nota_Metodologica_230525.pdf" target="_blank" rel="noopener">Rapporto Tecnico</a>).</p>
+        <p>Ne consegue una stima improntata a criteri di prudenza e ragionevolezza.</p>
+      </div>
+    </details>
+    <div class="oe-text-2col" style="margin-top:var(--oe-space-l)">
+      <p>L’analisi ha utilizzato come shock di domanda la spesa nel 2025 di circa 10 miliardi di euro effettuata da RFI in Italia (quindi al netto delle importazioni dall’estero) per investimenti sulla rete ferroviaria nazionale. La spesa è geograficamente distribuita e settorialmente concentrata nei comparti delle costruzioni, della metallurgia e delle forniture energetiche. I suoi esiti mostrano che tale spesa è in grado di generare un contributo diretto e indiretto al PIL di 8,6 miliardi registrando conseguentemente un moltiplicatore della spesa pari a 0,8 in linea con quanto riportato nella <a href="https://www.dt.mef.gov.it/export/sites/sitodt/modules/documenti_it/analisi_progammazione/documenti_programmatici/def_2021/DEF_2021_Allegato_MIMS.pdf" target="_blank" rel="noopener">valutazione d’impatto della spesa PNRR svolta dal MIMS</a> (moltiplicatore impatto/spesa pari a 0,63) ed un relativo contributo all’occupazione di 112 mila posti di lavoro a tempo pieno. Se si considerano anche gli impatti indotti, il contributo aggiuntivo al PIL è di 6,2 miliardi di euro con un moltiplicatore di 0,6 e l’occupazione aggiuntiva è pari a 68 mila posti di lavoro a tempo pieno.</p>
+      <p>Gli effetti degli investimenti di RFI nel periodo analizzato non risultano soltanto positivi e significativi, ma anche diffusi, sia geograficamente che settorialmente. Infatti, la domanda aggiuntiva di beni e servizi si dimostra in grado di stimolare efficacemente le dinamiche di interdipendenza di molteplici settori industriali e le relative catene del valore distribuite in tutte le regioni italiane propagando gli effetti in tutta l’economia nazionale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ INVESTIMENTI PER LINEA · bianco, figure grigie -->
+<section class="oe-band">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">Gli investimenti</span>
+    <h2>Analisi degli investimenti</h2>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 1</span>
+        <p class="fig__title">Articolazione degli investimenti per linea di intervento</p>
+      </div>
+      <div data-oe-chart="linee"></div>
+    </div>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 2</span>
+        <p class="fig__title">Articolazione degli investimenti per regione e linea di intervento</p>
+      </div>
+      <div data-oe-chart="lineeRegioni"></div>
+    </div>
+
+    <p>Gli investimenti effettuati da RFI nel 2025 sono pari a 10,4 miliardi di euro e si distribuiscono in quattro principali linee di intervento:</p>
+    <ol class="steps">
+      <li>1,5 miliardi di euro sono destinati al programma di presidio infrastruttura,</li>
+      <li>quasi un miliardo è dedicato all’adeguamento a standard,</li>
+      <li>ulteriori 1,5 miliardi per tecnologie e</li>
+      <li>quasi 7 miliardi allo sviluppo.</li>
+    </ol>
+    <div class="oe-text-2col">
+      <p>La maggior parte della spesa è quindi indirizzata alla crescita e allo sviluppo infrastrutturale, con l’obiettivo di colmare il divario infrastrutturale tra il Nord e il Sud del Paese, sfruttando il CdP-Investimenti e il PNRR. Questo intervento punta a innalzare gli standard prestazionali della rete e migliorare la connettività complessiva del sistema Paese.</p>
+      <p>Un’altra importante area di intervento del Piano riguarda la manutenzione e l’adeguamento degli asset esistenti, ormai obsoleti. L’usura delle infrastrutture, combinata con la concentrazione del traffico ferroviario su specifiche linee e stazioni, contribuisce infatti all’amplificazione dei ritardi, dovuta anche alla carenza di hub ferroviari che possano competere in termini di capacità e funzionalità con quelli di Roma e Milano.</p>
+    </div>
+    <p>Il dato di input relativo alla spesa di RFI per il 2025 è stato ripartito a livello regionale in base alla distribuzione territoriale del piano RFI 2021-2024.</p>
+  </div>
+</section>
+
+<!-- ============================================================ INVESTIMENTI PER SETTORE · grigio, figure bianche -->
+<section class="oe-band oe-band--elev">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">I settori</span>
+    <h2>Articolazione degli investimenti per settore</h2>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 3</span>
+        <p class="fig__title">Ripartizione degli investimenti nel 2025 per settore</p>
+      </div>
+      <div data-oe-chart="settori"></div>
+    </div>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 4</span>
+        <p class="fig__title">Articolazione degli investimenti per regione e per settore</p>
+      </div>
+      <div data-oe-chart="settoriRegioni"></div>
+    </div>
+
+    <div class="oe-text-2col">
+      <p>Per quanto riguarda l’allocazione settoriale degli investimenti, il principale settore coinvolto è quello delle Costruzioni. Il 50% degli investimenti, pari a oltre 5 miliardi di euro, è infatti destinato al settore delle Costruzioni, che risulta essere il principale settore coinvolto per la specificità degli interventi che riguardano principalmente il rinnovo e lo sviluppo delle infrastrutture.</p>
+      <p>Il restante 31,8% degli investimenti (escluso il settore residuale “altro” pari al 18,2%) è invece distribuito tra i settori della Programmazione e Consulenza Informatica (1,2 miliardi di euro), delle Attività Metallurgiche (circa 0,6 miliardi), delle Consulenze legali e tecniche (oltre 1 miliardo) e della Fabbricazione di Apparecchiature Elettriche (quasi 0,5 miliardi complessivi).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ DETTAGLIO DEGLI IMPATTI · bianco, figure grigie -->
+<section class="oe-band">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">Gli impatti</span>
+    <h2>Dettaglio degli impatti</h2>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 5</span>
+        <p class="fig__title">Impatti diretti, indiretti e indotti sulle dimensioni principali</p>
+      </div>
+      <div data-oe-chart="impatti"></div>
+    </div>
+
+    <p>L’investimento di RFI ha un impatto sulle principali dimensioni, ovvero sul contributo al valore aggiunto, alla produzione, all’occupazione, ai redditi delle famiglie e al gettito fiscale, analizzate attraverso effetti diretti, indiretti e indotti:</p>
+    <ol class="steps">
+      <li>l’impatto <strong>diretto</strong> si riferisce al valore aggiunto generato dai settori coinvolti dagli investimenti del Piano Industriale;</li>
+      <li>l’impatto <strong>indiretto</strong> comprende il valore aggiunto dai settori che forniscono beni e servizi attraverso le catene di approvvigionamento;</li>
+      <li>l’impatto <strong>indotto</strong> è l’effetto derivante dalla maggiore spesa delle famiglie per beni e servizi, conseguente all’aumento del loro reddito.</li>
+    </ol>
+    <p>Sia la componente indiretta che indotta ammontano a più dell’impatto generato direttamente dal piano di investimento.</p>
+  </div>
+</section>
+
+<!-- ============================================================ GEOGRAFIA · grigio, figure bianche -->
+<section class="oe-band oe-band--elev">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">Il territorio</span>
+    <h2>Disaggregazione geografica dell’impatto</h2>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Mappa 1</span>
+        <p class="fig__title">Articolazione regionale del valore aggiunto</p>
+      </div>
+      <div data-oe-chart="mappaRegioni"></div>
+    </div>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Mappa 2</span>
+        <p class="fig__title">Articolazione provinciale del valore aggiunto</p>
+      </div>
+      <div data-oe-chart="mappaProvince"></div>
+    </div>
+
+    <p>A livello provinciale, grazie alla presenza di hub ferroviari di primaria importanza, le province che beneficiano maggiormente in termini di creazione di valore aggiunto diretto, indiretto e indotto sono, in ordine, Roma (851 milioni di euro), Milano (843 milioni di euro) e Napoli (754 milioni di euro).</p>
+  </div>
+</section>
+
+<!-- ============================================================ ARTICOLAZIONE STRUTTURALE · bianco, figure grigie -->
+<section class="oe-band">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">Territori e settori</span>
+    <h2>Articolazione strutturale degli impatti</h2>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 6</span>
+        <p class="fig__title">Valore aggiunto per regione e principali settori economici</p>
+      </div>
+      <div data-oe-chart="vaRegioniSettori"></div>
+    </div>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 7</span>
+        <p class="fig__title">Articolazione geografica degli impatti: regioni e province</p>
+      </div>
+      <div data-oe-chart="geoRuota"></div>
+    </div>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 8</span>
+        <p class="fig__title">Articolazione settoriale degli impatti</p>
+      </div>
+      <div data-oe-chart="treemapSettori"></div>
+    </div>
+
+    <p>Comparando la spesa per gli investimenti con la disaggregazione geografica e settoriale del valore aggiunto, si può osservare come le regioni più impattate non siano necessariamente quelle in cui è stata concentrata la maggiore spesa. Ad esempio, con 1,9 miliardi di euro di investimenti, il Lazio si colloca all’ottavo posto per volume di spesa, ma risulta essere la quarta regione per impatto sul PIL, con un incremento del valore aggiunto pari a circa 1,2 miliardi di euro.</p>
+  </div>
+</section>
+
+<!-- ============================================================ IMPATTI PER REGIONE · grigio, figure bianche -->
+<section class="oe-band oe-band--elev">
+  <div class="oe-container">
+    <span class="oe-tag-chip oe-tag-chip--lime">Le regioni</span>
+    <h2>Impatti diretti, indiretti e indotti per regione</h2>
+
+    <div class="fig">
+      <div class="fig__head">
+        <span class="oe-figure-label">Grafico 9</span>
+        <p class="fig__title">Valore aggiunto, produzione e occupazione per regione</p>
+      </div>
+      <div data-oe-chart="regioni"></div>
+    </div>
+
+    <p>Il grafico mostra l’impatto sul valore aggiunto, sulla produzione e sull’occupazione per regione, suddiviso nelle sue tre componenti: impatto diretto, indiretto e indotto.</p>
+    <div class="oe-text-2col">
+      <p>Focalizzandoci sul valore aggiunto, si osserva come il Veneto, la regione che beneficia maggiormente dagli investimenti del Piano Industriale di RFI, abbia il più elevato impatto diretto.</p>
+      <p>Tuttavia, poiché non solo i settori direttamente coinvolti, ma anche quelli interconnessi attraverso la catena del valore beneficiano in maniera indiretta e indotta della spesa, alcune regioni, fra cui la Lombardia con un impatto diretto inferiore rispetto a Veneto e Campania, ricevono un contributo complessivo maggiore grazie alla componente indiretta e indotta.</p>
+    </div>
+    <p class="note" style="margin-top:var(--oe-space-m)">Per maggiori dettagli sulla metodologia dell’analisi di impatto, è possibile consultare il <a href="https://qcfdxmax.elementor.cloud/wp-content/uploads/2025/05/OE_RFI_Nota_Metodologica_230525.pdf" target="_blank" rel="noopener">Rapporto Tecnico</a>.</p>
+  </div>
+</section>
+
+<section class="oe-cta">
+  <div>
+    <h2 class="oe-cta__title">Quanto vale il vostro piano di investimenti?</h2>
+    <p class="oe-cta__text">Misuriamo gli impatti su PIL, occupazione e territori con modelli riconosciuti e dati verificabili.</p>
+  </div>
+  <a class="oe-btn oe-btn--inverse oe-btn--lg" href="https://www.openeconomics.eu/">Parliamone</a>
+</section>
+
+<footer class="oe-footer oe-footer--analisi">
+  <div class="oe-footer__inner">
+    <div class="oe-footer__top">
+      <div class="oe-footer__brand">
+        <svg class="oe-footer__logo" viewBox="0 0 1789 226" fill="currentColor" role="img" aria-label="OpenEconomics" xmlns="http://www.w3.org/2000/svg"     > <path d="M90.6,9.5c-49,0-88.7,39.8-88.7,89c0,49.1,39.7,89,88.7,89s88.7-39.8,88.7-89C179.3,49.3,139.6,9.5,90.6,9.5z M38.2,151V46h104.6v105H38.2z" /> <path d="M199.5,226V57H221l5.6,19.3c2.6-4.6,5.9-8.6,10-11.8c4.1-3.3,8.7-5.7,13.8-7.4s10.7-2.6,16.6-2.6c10.1,0,19.3,2.7,27.6,8c8.4,5.3,15,12.9,20,22.9c4.9,9.9,7.4,21.8,7.4,35.7s-2.5,25.9-7.4,36c-4.9,9.9-11.6,17.6-20,22.9c-8.4,5.1-17.6,7.7-27.6,7.7c-6,0-11.5-0.9-16.6-2.6c-5.1-1.7-9.7-4.2-13.8-7.4c-4.1-3.4-7.4-7.4-10-12.1V226H199.5z M259.1,165.1c9.9,0,17.9-3.9,24-11.6c6.3-7.7,9.5-18.6,9.5-32.6s-3.2-24.9-9.5-32.6c-6.1-7.7-14.2-11.6-24-11.6c-9.9,0-18,3.7-24.3,11c-6.1,7.4-9.2,18.3-9.2,32.9c0,14.4,3.1,25.4,9.2,33.1C241.1,161.4,249.2,165.1,259.1,165.1z" /> <path d="M399.1,187.5c-13.5,0-25.1-2.8-34.8-8.5c-9.6-5.8-17-13.7-22.3-23.6c-5.1-10.1-7.7-21.7-7.7-34.7c0-13.5,2.8-25.3,8.4-35.2c5.8-9.9,13.5-17.6,23-22.9c9.7-5.5,20.6-8.2,32.5-8.2c10.1,0,19,2,26.9,5.9c8,3.9,14.7,9.3,20,16.2c5.3,6.8,9.1,14.7,11.5,23.6c2.4,8.7,3.2,18.1,2.6,28H362c0.9,7,2.6,12.9,5.1,17.7c2.6,4.8,5.5,8.6,9,11.3c3.6,2.7,7.3,4.7,11.3,5.9c4.1,1.2,7.9,1.8,11.5,1.8c6.7,0,12.3-1,16.9-3.1c4.8-2.2,8.5-5.1,11.3-8.5l24,7.7c-5.1,8.2-12.2,14.7-21.2,19.5C420.8,185.2,410.5,187.5,399.1,187.5z M362.3,108.6h69.8c-0.2-5.8-1.7-11.1-4.6-15.9c-2.7-5-6.6-8.9-11.5-11.8c-4.9-3.1-10.7-4.6-17.4-4.6c-5.3,0-10.6,1-15.9,3.1c-5.1,2.1-9.6,5.5-13.3,10.3C365.8,94.2,363.5,100.6,362.3,108.6z" /> <path d="M477.9,184.4V57h21.7l5.4,18.5c2.2-3.8,5.1-7.2,8.7-10.3c3.8-3.3,8.2-5.8,13.3-7.7c5.3-2.1,11.4-3.1,18.4-3.1c10.4,0,18.7,2.1,24.8,6.2s10.6,9.9,13.3,17.5c2.7,7.5,4.1,16.4,4.1,26.7v79.6h-27.4v-72.2c0-6.3-0.5-12.2-1.5-17.5c-1-5.5-3.3-9.8-6.9-13.1c-3.4-3.3-9-4.9-16.6-4.9c-9.6,0-17,3.4-22.3,10.3c-5.3,6.7-7.9,16.5-7.9,29.5v67.8L477.9,184.4L477.9,184.4z" /> <path d="M645.3,158.7V112h-25.9v72.5H737v-25.7h-91.7V158.7z M736.1,38.3V12.6H619.4v71.9h25.9V38.3H736.1z M714.6,84.5h-69.3V112h69.3V84.5z" /> <path d="M808.6,187.5c-12.8,0-23.8-2.8-33-8.5c-9-5.8-16-13.7-21-23.6c-4.8-10.1-7.2-21.7-7.2-34.7c0-12.8,2.6-24.2,7.7-34.2c5.3-10.1,12.6-18,22-23.6c9.4-5.7,20.4-8.5,33-8.5c7.5,0,14.5,1.3,21,3.9c6.7,2.4,12.5,5.8,17.7,10.3c5.1,4.5,9.2,9.8,12.3,16.2l-23.8,8.7c-2.6-5.3-6.3-9.3-11.3-12.1c-4.8-2.9-10.1-4.4-16.1-4.4c-5.8,0-11.3,1.5-16.6,4.6c-5.1,3.1-9.3,7.8-12.5,14.1c-3.1,6.3-4.6,14.6-4.6,24.9c0,10.1,1.6,18.5,4.9,25.2c3.2,6.5,7.4,11.3,12.5,14.4c5.1,3.1,10.6,4.6,16.4,4.6c6.5,0,12-1.4,16.6-4.1c4.8-2.9,8.4-6.7,11-11.3l23.8,8.7c-3.6,6.2-8.1,11.5-13.6,15.9c-5.5,4.3-11.5,7.6-18.2,10C823,186.4,816,187.5,808.6,187.5z" /> <path d="M929.2,187.5c-7.8,0-15.5-1.3-23-3.9c-7.5-2.6-14.2-6.6-20.2-12.1s-10.8-12.4-14.6-20.8c-3.6-8.4-5.4-18.3-5.4-29.8s1.8-21.4,5.4-29.8c3.8-8.4,8.6-15.3,14.6-20.8s12.7-9.5,20.2-12.1s15.2-3.9,23-3.9s15.4,1.3,22.8,3.9c7.5,2.6,14.2,6.6,20.2,12.1s10.7,12.4,14.3,20.8c3.8,8.4,5.6,18.3,5.6,29.8s-1.9,21.4-5.6,29.8c-3.6,8.4-8.4,15.3-14.3,20.8c-6,5.5-12.7,9.5-20.2,12.1C944.7,186.2,937.1,187.5,929.2,187.5z M929.2,164.9c6,0,11.5-1.5,16.6-4.4c5.3-3.1,9.6-7.9,12.8-14.4s4.9-14.9,4.9-25.2s-1.6-18.6-4.9-24.9c-3.2-6.5-7.5-11.3-12.8-14.4c-5.1-3.1-10.7-4.6-16.6-4.6c-6,0-11.6,1.5-16.9,4.6c-5.3,3.1-9.6,7.9-12.8,14.4c-3.2,6.3-4.9,14.6-4.9,24.9s1.6,18.7,4.9,25.2c3.2,6.5,7.5,11.3,12.8,14.4C917.6,163.4,923.3,164.9,929.2,164.9z" /> <path d="M1012.3,184.4V57h21.8l5.4,18.5c2.2-3.8,5.1-7.2,8.7-10.3c3.8-3.3,8.2-5.8,13.3-7.7c5.3-2.1,11.4-3.1,18.4-3.1c10.4,0,18.7,2.1,24.8,6.2c6.1,4.1,10.6,9.9,13.3,17.5c2.7,7.5,4.1,16.4,4.1,26.7v79.6h-27.4v-72.2c0-6.3-0.5-12.2-1.5-17.5c-1-5.5-3.3-9.8-6.9-13.1c-3.4-3.3-8.9-4.9-16.6-4.9c-9.6,0-17,3.4-22.2,10.3c-5.3,6.7-7.9,16.5-7.9,29.5v67.8L1012.3,184.4L1012.3,184.4z" /> <path d="M1204.8,187.5c-7.8,0-15.5-1.3-23-3.9c-7.5-2.6-14.2-6.6-20.2-12.1s-10.8-12.4-14.6-20.8c-3.6-8.4-5.4-18.3-5.4-29.8s1.8-21.4,5.4-29.8c3.8-8.4,8.6-15.3,14.6-20.8s12.7-9.5,20.2-12.1s15.2-3.9,23-3.9s15.4,1.3,22.8,3.9c7.5,2.6,14.2,6.6,20.2,12.1s10.8,12.4,14.3,20.8c3.8,8.4,5.6,18.3,5.6,29.8s-1.9,21.4-5.6,29.8c-3.6,8.4-8.4,15.3-14.3,20.8c-6,5.5-12.7,9.5-20.2,12.1C1220.2,186.2,1212.6,187.5,1204.8,187.5z M1204.8,164.9c6,0,11.5-1.5,16.6-4.4c5.3-3.1,9.5-7.9,12.8-14.4c3.2-6.5,4.9-14.9,4.9-25.2s-1.6-18.6-4.9-24.9c-3.2-6.5-7.5-11.3-12.8-14.4c-5.1-3.1-10.7-4.6-16.6-4.6c-6,0-11.6,1.5-16.9,4.6s-9.6,7.9-12.8,14.4c-3.2,6.3-4.9,14.6-4.9,24.9s1.6,18.7,4.9,25.2c3.2,6.5,7.5,11.3,12.8,14.4C1193.2,163.4,1198.8,164.9,1204.8,164.9z" /> <path d="M1287.8,184.4V57h21.8l5.4,18.5c2.2-3.8,5-7.2,8.4-10.3c3.6-3.3,7.8-5.8,12.8-7.7c4.9-2.1,10.6-3.1,16.9-3.1c9.9,0,17.8,2,23.8,5.9c6,3.8,10.4,9.2,13.3,16.2c4.9-7.7,11.1-13.3,18.4-16.7c7.5-3.6,15.7-5.4,24.6-5.4c10.2,0,18.3,2.1,24.3,6.2s10.3,9.9,13,17.5s4.1,16.4,4.1,26.7v79.6h-27.1v-72.2c0-6.3-0.6-12.2-1.8-17.5c-1-5.5-3.3-9.8-6.9-13.1c-3.4-3.3-8.8-4.9-16.1-4.9c-8.7,0-15.5,3.3-20.5,10c-4.9,6.5-7.4,16.2-7.4,29v68.6h-27.1v-72.2c0-6.3-0.6-12.2-1.8-17.5c-1-5.5-3.2-9.8-6.7-13.1c-3.4-3.3-8.8-4.9-16.1-4.9c-5.8,0-10.8,1.5-15.1,4.6c-4.3,2.9-7.5,7.4-9.7,13.4c-2.2,5.8-3.3,12.9-3.3,21.3v68.3h-27.2V184.4z" /> <path d="M1510,184.4V78.3h-18.9V57h46.3v127.4H1510z" /> <path d="M1505.9,1h31.7v31.8h-31.7V1z" /> <path d="M1619.1,187.5c-12.8,0-23.8-2.8-33-8.5c-9-5.8-16-13.7-21-23.6c-4.8-10.1-7.2-21.7-7.2-34.7c0-12.8,2.6-24.2,7.7-34.2c5.3-10.1,12.6-18,22-23.6c9.4-5.7,20.4-8.5,33-8.5c7.5,0,14.5,1.3,21,3.9c6.7,2.4,12.5,5.8,17.7,10.3c5.1,4.5,9.2,9.8,12.3,16.2l-23.8,8.7c-2.6-5.3-6.3-9.3-11.3-12.1c-4.8-2.9-10.2-4.4-16.1-4.4c-5.8,0-11.3,1.5-16.6,4.6c-5.1,3.1-9.3,7.8-12.5,14.1c-3.1,6.3-4.6,14.6-4.6,24.9c0,10.1,1.6,18.5,4.9,25.2c3.2,6.5,7.4,11.3,12.5,14.4s10.6,4.6,16.4,4.6c6.5,0,12-1.4,16.6-4.1c4.8-2.9,8.4-6.7,11-11.3l23.8,8.7c-3.6,6.2-8.1,11.5-13.6,15.9c-5.4,4.3-11.5,7.6-18.2,10C1633.4,186.4,1626.4,187.5,1619.1,187.5z" /> <path d="M1734.2,187.5c-8.2,0-16.1-1.2-23.8-3.6c-7.5-2.4-14.1-5.9-19.9-10.5c-5.6-4.8-9.9-10.8-12.8-18l24.8-9c1.7,6.3,5.7,11.2,12,14.6c6.3,3.4,13,5.1,19.9,5.1c7.7,0,14.2-1.5,19.7-4.6c5.5-3.3,8.2-7.5,8.2-12.8c0-4.6-2-8.2-5.9-10.8s-10.2-4.7-18.9-6.4l-17.1-3.6c-7.5-1.5-14.2-3.8-20.2-6.7c-5.8-2.9-10.4-6.8-13.8-11.6c-3.2-4.8-4.9-10.8-4.9-18c0-7.9,2.4-14.6,7.2-20.3c4.8-5.7,11.1-9.9,18.9-12.8c8-2.9,16.6-4.4,25.8-4.4c11.1,0,21.4,2.2,30.9,6.7c9.6,4.3,16.5,11.2,20.7,20.8l-24.3,9c-2.2-5-6-8.7-11.3-11.3c-5.1-2.6-10.9-3.9-17.4-3.9c-7.2,0-13,1.4-17.4,4.1s-6.7,6.4-6.7,11c0,4.1,1.5,7.3,4.6,9.5c3.2,2.1,8.3,3.9,15.1,5.4l17.4,3.6c9.2,1.9,17.1,4.3,23.5,7.2c6.6,2.9,11.7,6.8,15.1,11.8c3.4,4.8,5.1,11.1,5.1,19c0,8.4-2.5,15.7-7.4,21.8c-4.9,6-11.5,10.6-19.7,13.9C1753.7,185.9,1744.5,187.5,1734.2,187.5z" />    </svg>
+        <p class="oe-footer__tagline">Enabling adaptation. Empowering impact. With platforms, strategy, and trust.</p>
+      </div>
+      <div class="oe-footer__disclaimer">
+        <span class="oe-footer__disclaimer-label">Condizioni d'uso</span>
+        Il presente documento e tutte le informazioni in esso contenute possono essere divulgati, a condizione che la distribuzione avvenga citando OpenEconomics come fonte. Le informazioni sono fornite a scopo puramente informativo e non implicano alcuna garanzia o impegno da parte di OpenEconomics. Le analisi economiche contenute nel documento sono state elaborate sulla base di fonti pubbliche autorevoli e fornitori di dati specialistici, e sono state realizzate con l'obiettivo di offrire una valutazione professionale, oggettiva e prudenziale in linea con le prassi metodologiche di comparto. Al documento e ai suoi contenuti si applicano il copyright e le norme in materia di protezione dei dati personali.
+      </div>
+    </div>
+    <hr class="oe-footer__rule">
+    <div class="oe-footer__bottom">
+      <p class="oe-footer__meta">© 2026 OpenEconomics&nbsp;| Partita Iva 12504821005</p>
+      <nav class="oe-footer__links" aria-label="Note legali">
+        <a class="oe-footer__link" href="https://www.openeconomics.eu/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+        <a class="oe-footer__link" href="https://www.openeconomics.eu/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js?v=202610081554"></script>
+<script src="ds-kit/oe-charts.js" defer></script>
+</body>
+</html>
